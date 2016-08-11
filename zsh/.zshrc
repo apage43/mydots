@@ -1,6 +1,6 @@
-#load zgen
 source "${HOME}/.zplug/init.zsh"
 export HGEDITOR=vim
+export EDITOR=vim
 
 # override paths {{{
 for path_candidate in ~/bin \
@@ -21,8 +21,6 @@ fi
 zplug "robbyrussell/oh-my-zsh"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "hlissner/zsh-autopair"
-
-zplug "unixorn/autoupdate-zgen"
 
 zplug "djui/alias-tips"
 

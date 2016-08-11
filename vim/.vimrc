@@ -67,8 +67,8 @@ set showmatch
 set diffopt=filler,iwhite
 set laststatus=2
 set scrolloff=3
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set noshowmode
 set textwidth=80
 set mouse=a
@@ -133,3 +133,7 @@ endif
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>t :Files<CR>
 nmap <leader>gc :Commits<CR>
+
+au BufRead,BufNewFile TARGETS    set filetype=python
+au BufRead,BufNewFile *.cconf    set filetype=python
+au BufRead,BufNewFile *.cinc     set filetype=python
