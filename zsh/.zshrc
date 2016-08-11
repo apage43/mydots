@@ -115,7 +115,7 @@ export FZF_DEFAULT_OPTS='
 # }}}
 
 # late local config (aliases, completions)
-if [ -f .zshrc.local.late ]; then
+if [ -f ~/.zshrc.local.late ]; then
   source ~/.zshrc.local.late
 fi
 
