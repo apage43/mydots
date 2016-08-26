@@ -7,20 +7,42 @@ Plug 'benmills/vimux'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sleuth'
+
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
+
 Plug 'majutsushi/tagbar'
+let g:tagbar_autofocus = 1
+
 Plug 'rking/ag.vim'
-Plug 'scrooloose/syntastic' , {'for': 'sh,py'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': '~/bin/fzfup' }
+
+Plug 'scrooloose/syntastic' , {'for': ['sh', 'python']}
+let g:syntastic_check_on_open = 1
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'wincent/loupe'
+" for netrw override, don't use the sidebar
 Plug 'scrooloose/nerdtree'
 Plug 'ludovicchabant/vim-lawrencium'
+
 " better python folding
 Plug 'tmhedberg/SimpylFold'
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
+Plug 'davidhalter/jedi-vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ervandew/supertab'
+"Plug 'Shougo/neocomplete'
+"let g:neocomplete#enable_at_startup = 1
+Plug 'junegunn/vim-easy-align'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 autocmd VimEnter *
@@ -28,22 +50,20 @@ autocmd VimEnter *
   \|   PlugInstall | q
   \| endif
 
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring = 0
-let g:tagbar_autofocus = 1
-let g:syntastic_check_on_open = 1
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
+let g:fzf_files_options =
+  \ '--preview "(pygmentize {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=10
 "let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme base16-ocean
 " colorscheme solarized
 set background=dark
 
 syntax on
-set expandtab
-set smarttab
+"set expandtab
+"set smarttab
 set relativenumber
 set autoindent sm
 set showmode
@@ -53,12 +73,12 @@ filetype on
 filetype plugin on
 filetype indent on
 set magic
-set list                              " show whitespace
-set listchars=nbsp:⦸                  " CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
-set listchars+=tab:..              " RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-set listchars+=extends:»              " RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-set listchars+=precedes:«             " LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
-set listchars+=trail:•                " BULLET (U+2022, UTF-8: E2 80 A2)
+set list
+set listchars=nbsp:⦸
+set listchars+=tab:»·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=trail:•
 set incsearch
 set ignorecase
 set smartcase
@@ -67,8 +87,6 @@ set showmatch
 set diffopt=filler,iwhite
 set laststatus=2
 set scrolloff=3
-set tabstop=4
-set shiftwidth=4
 set noshowmode
 set textwidth=80
 set mouse=a
@@ -83,6 +101,7 @@ set splitbelow
 set lazyredraw
 set modeline
 set modelines=5
+set tabstop=4
 
 if exists('+colorcolumn')
   " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
@@ -94,18 +113,18 @@ if has('breakindent')
 endif
 
 if has('virtualedit')
-  set virtualedit=block               " allow cursor to move where there is no text in visual block mode
+  set virtualedit=block         " allow cursor to move where there is no text in visual block mode
 endif
 
 if has('folding')
   if has('windows')
-    set fillchars=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+    set fillchars=vert:┃ " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
   endif
-  set foldmethod=syntax               " indent would be faster?
-  set foldlevelstart=99               " start unfolded
+  set foldmethod=syntax  " indent would be faster?
+  set foldlevelstart=99  " start unfolded
 endif
 
-set whichwrap=b,h,l,s,<,>,[,],~       " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
+set whichwrap=b,h,l,s,<,>,[,],~ " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
 
 autocmd FileType php set shiftwidth=2
 nmap ; :
@@ -133,6 +152,10 @@ endif
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>t :Files<CR>
 nmap <leader>gc :Commits<CR>
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 au BufRead,BufNewFile TARGETS    set filetype=python
 au BufRead,BufNewFile *.cconf    set filetype=python

@@ -43,6 +43,7 @@ zplug "RobSis/zsh-completion-generator"
 zplug "caiogondim/bullet-train-oh-my-zsh-theme", use:bullet-train.zsh-theme
 zplug "zsh-users/zsh-syntax-highlighting", nice:12
 zplug "knu/z", use:z.sh, nice:10
+zplug "rupa/v", as:command, use:v
 zplug "supercrabtree/k"
 zplug "jreese/zsh-titles"
 
@@ -75,6 +76,7 @@ BULLETTRAIN_HG_SHOW=false
 BULLETTRAIN_PROMPT_ORDER=(
   custom
   git
+  hg
   context
   dir
 )
