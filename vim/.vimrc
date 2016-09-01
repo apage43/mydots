@@ -130,6 +130,7 @@ autocmd FileType php set shiftwidth=2
 nmap ; :
 nmap <leader><space> :noh<CR>
 highlight CursorLineNr ctermfg=lightblue cterm=bold ctermbg=black
+highlight Comment cterm=italic
 nmap <leader>ps :Ag
 nmap <leader>b :Buffers<CR>
 nmap <leader>ab :Dispatch arc build<CR>

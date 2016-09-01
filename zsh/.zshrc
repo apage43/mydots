@@ -90,9 +90,12 @@ BULLETTRAIN_DIR_EXTENDED=0
 # aliases/helpers
 
 function s() {
-  ssh root@$1 "${@:2}"
+  TERM=xterm-256color ssh root@$1 "${@:2}"
 }
 
+function p() {
+  scp "${@:2}" root@${1}:
+}
 # keybinds
 bindkey '^K' zce
 bindkey '^W' kill-word
