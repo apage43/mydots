@@ -16,6 +16,8 @@ xterm-screen-256color|GNU Screen with 256 colors and tmux xterm-keys,
     kDC=\E[3;2~, kEND=\E[1;2F, kHOM=\E[1;2H,
     kIC=\E[2;2~, kLFT=\E[1;2D, kNXT=\E[6;2~, kPRV=\E[5;2~,
     kRIT=\E[1;2C, 
+# italic
+    sitm=\E[3m, ritm=\E[23m,
 # horiz absolute pos
     hpa=\E[%i%p1%dG,
 
