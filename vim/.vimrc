@@ -24,6 +24,7 @@ let g:syntastic_check_on_open = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'wincent/loupe'
 " for netrw override, don't use the sidebar
 Plug 'scrooloose/nerdtree'
@@ -130,6 +131,13 @@ if has('folding')
   set foldlevelstart=99  " start unfolded
 endif
 
+if has('gui')
+  set guifont=Input\ Mono\ 14
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=r
+endif
+
 set whichwrap=b,h,l,s,<,>,[,],~ " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
 
 autocmd FileType php set shiftwidth=2
@@ -163,6 +171,11 @@ nmap <leader>gc :Commits<CR>
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+if has('gui')
+  nmap <leader>t :CtrlP<CR>
+  nmap <leader>b :CtrlPBuffer<CR>
+endif
 
 au BufRead,BufNewFile TARGETS    set filetype=python
 au BufRead,BufNewFile *.cconf    set filetype=python
