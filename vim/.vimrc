@@ -19,7 +19,7 @@ let g:tagbar_autofocus = 1
 
 Plug 'rking/ag.vim'
 
-Plug 'scrooloose/syntastic' , {'for': ['sh', 'python']}
+Plug 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
@@ -43,6 +43,12 @@ Plug 'ervandew/supertab'
 "let g:neocomplete#enable_at_startup = 1
 Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
+let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'z': '~/.zshrc'} ]
+let g:startify_list_order = [['   Most recent (current dir)'], 'dir',
+                           \ ['   Most recent (global)'],      'files',
+                           \ ['   Sessions'],                  'sessions',
+                           \ ['   Bookmarks'],                 'bookmarks',
+                           \ ['   Commands'],                  'commands']
 call plug#end()
 
 autocmd VimEnter *
