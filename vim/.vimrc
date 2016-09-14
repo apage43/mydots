@@ -13,6 +13,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1
 
 Plug 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
@@ -167,6 +168,7 @@ endif
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>t :Files<CR>
 nmap <leader>gc :Commits<CR>
+nmap <leader>z :qa<CR>
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
