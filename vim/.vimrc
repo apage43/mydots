@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-
 Plug 'chriskempson/base16-vim'
 Plug 'darfink/vim-plist'
 Plug 'tpope/vim-dispatch'
@@ -8,13 +7,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sleuth'
-
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
+let g:airline_theme='base16_ocean'
 let g:airline#extensions#tabline#enabled = 1
-
 Plug 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
 
@@ -61,13 +58,14 @@ autocmd VimEnter *
 
 let g:fzf_files_options =
   \ '--preview "(pygmentize {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+let $FZF_DEFAULT_COMMAND = 'hg files . || ag -g "" | ag -v buck-out'
 
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=10
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=10
 "let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-ocean
 " colorscheme solarized
 set background=dark
+colorscheme base16-ocean
 
 syntax on
 "set expandtab
@@ -96,7 +94,7 @@ set diffopt=filler,iwhite
 set laststatus=2
 set scrolloff=3
 set noshowmode
-set textwidth=80
+"set textwidth=80
 set mouse=a
 let mapleader=','
 let maplocalleader=','
@@ -111,10 +109,10 @@ set modeline
 set modelines=5
 set tabstop=4
 
-if exists('+colorcolumn')
-  " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
-  let &l:colorcolumn='+' . join(range(0, 254), ',+')
-endif
+"if exists('+colorcolumn')
+"  " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
+"  let &l:colorcolumn='+' . join(range(0, 254), ',+')
+"endif
 
 if has('breakindent')
   set breakindent " indent wrapped lines to match start
@@ -144,8 +142,6 @@ set whichwrap=b,h,l,s,<,>,[,],~ " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cr
 autocmd FileType php set shiftwidth=2
 nmap ; :
 nmap <leader><space> :noh<CR>
-highlight CursorLineNr ctermfg=lightblue cterm=bold ctermbg=black
-highlight Comment cterm=italic
 nmap <leader>ps :Ag
 nmap <leader>b :Buffers<CR>
 nmap <leader>ab :Dispatch arc build<CR>
@@ -177,6 +173,14 @@ nmap ga <Plug>(EasyAlign)
 if has('gui')
   nmap <leader>t :CtrlP<CR>
   nmap <leader>b :CtrlPBuffer<CR>
+endif
+
+if has('termguicolors')
+  set termguicolors
+  " Don't need this in xterm-256color, but do need it inside tmux.
+  " (See `:h xterm-true-color`.)
+  let &t_8f="\<Esc>[38;2;%ld;%ld;%ldm"
+  let &t_8b="\<Esc>[48;2;%ld;%ld;%ldm"
 endif
 
 au BufRead,BufNewFile TARGETS    set filetype=python

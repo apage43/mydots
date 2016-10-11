@@ -63,6 +63,7 @@ zplug load
 zmodload zsh/terminfo
 
 setopt prompt_subst
+setopt interactivecomments
 setopt auto_cd
 # BULLET TRAIN {{{
 # host-type icon in custom part
