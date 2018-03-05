@@ -10,7 +10,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='base16_ocean'
+let g:airline_theme='base16_atelierforest'
 let g:airline#extensions#tabline#enabled = 1
 Plug 'majutsushi/tagbar'
 let g:tagbar_autofocus = 1
@@ -34,7 +34,7 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 
 Plug 'mhinz/vim-signify'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'davidhalter/jedi-vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ervandew/supertab'
@@ -42,6 +42,13 @@ Plug 'ervandew/supertab'
 "let g:neocomplete#enable_at_startup = 1
 Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'easymotion/vim-easymotion'
+Plug 'dleonard0/pony-vim-syntax'
+Plug 'jakwings/vim-pony'
+Plug 'vimoutliner/vimoutliner'
+Plug 'edkolev/tmuxline.vim'
 let g:startify_bookmarks = [ {'c': '~/.vimrc'}, {'z': '~/.zshrc'} ]
 let g:startify_list_order = [['   Most recent (current dir)'], 'dir',
                            \ ['   Most recent (global)'],      'files',
@@ -68,8 +75,8 @@ set background=dark
 colorscheme base16-ocean
 
 syntax on
-"set expandtab
-"set smarttab
+set expandtab
+set smarttab
 set relativenumber
 set autoindent sm
 set showmode
@@ -97,7 +104,7 @@ set noshowmode
 "set textwidth=80
 set mouse=a
 let mapleader=','
-let maplocalleader=','
+let maplocalleader=',,'
 
 set cmdheight=1
 set backspace=indent,eol,start
@@ -108,6 +115,7 @@ set lazyredraw
 set modeline
 set modelines=5
 set tabstop=4
+set shiftwidth=4
 
 "if exists('+colorcolumn')
 "  " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
@@ -131,7 +139,7 @@ if has('folding')
 endif
 
 if has('gui')
-  set guifont=Input\ Mono\ 14
+  set guifont=Fira\ Code:h13
   set guioptions-=m
   set guioptions-=T
   set guioptions-=r
